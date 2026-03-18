@@ -1,14 +1,21 @@
 const formId = document.getElementById("formId");
 const submitBtn = document.getElementById("submitBtn");
 
-submitBtn.addEventListener("submit", function(e){
-    e.preventDefault();
+async function fetchProdutos() {
+    try {
+        const response = await fetch('http://localhost:8080/produtos');
+        const data = await response.json();
+        console.log(`aaa`);
+    } catch (err) {
+        console.error("aaah", err)
+    }
+}
 
-    fetch('http://localhost:8080/produtos').then(response =>{
-        if(!response.ok){
-            throw new Error("response error");
-        } return response.json();
-    }).then(data => console.log('product data: ', data))
-    .catch(error => console.error('error: ', error));
-    
-})
+submitBtn.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    await fetchTry();
+
+    setTimeout(() => {
+        
+    }, 1000);
+});
